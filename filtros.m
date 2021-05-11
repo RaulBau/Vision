@@ -1,5 +1,5 @@
 ##
-# Nombre: Bautista Robles Raúl
+# Nombre: Bautista Robles Raï¿½l
 # Clave: 229563
 # Fecha: 23/03/2021
 ##
@@ -17,9 +17,9 @@ h=[-1 -1 -1;
 -1 -1 -1;];#Paso alto estricto laplaciano
 h2=fspecial("average");#laplacian
 
-##Seleccionamos el número de video
-numVideo="2";
-##Se obtiene la información del video
+##Seleccionamos el nï¿½mero de video
+numVideo="1";
+##Se obtiene la informaciï¿½n del video
 info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
 ##Se genera el nombre del video resultado
 nombre = cstrcat ("res", numVideo, ".avi"); 
@@ -59,7 +59,7 @@ for iCont=1:info.NumFrames-120
   maximo2=max(corl2(:));
   [yy2,xx2]=find(maximo2==corl2);
   
-  ##Verificamos que el punto esté en el rango correcto
+  ##Verificamos que el punto estï¿½ en el rango correcto
   if((yy1>=2&&yy1<=478)&&(xx1>=2&&xx1<=478))
     ##Marcamos el punto en el frame
     frm(yy1-2:yy1+2,xx1-2:xx1+2)=1;
