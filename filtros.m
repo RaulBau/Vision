@@ -39,7 +39,7 @@ H_Filtro=filtroC_LK(LK,ruta,NImages);
 
 for iCont=1:info.NumFrames-1
   ##Obtenemos el frame
-  frm=rgb2gray(aviread("Videos/2.avi",iCont));
+  frm=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),iCont));
   ##Recortamos la imagen
   frm=imcrop(frm,[187,1, 479, 479]);
   ##Creamos un respaldo del frame
@@ -64,15 +64,15 @@ for iCont=1:info.NumFrames-1
     ##Marcamos el punto en el frame
     frm(yy1-2:yy1+2,xx1-2:xx1+2)=1;
   endif
-  if((yy2>=2&&yy2<=478)&&(xx2>=2&&xx2<=478))
-    ##Marcamos el punto en el frame
-    frm(yy2-2:yy2+2,xx2-2:xx2+2)=1;
-  endif
+##  if((yy2>=2&&yy2<=478)&&(xx2>=2&&xx2<=478))
+##    ##Marcamos el punto en el frame
+##    frm(yy2-2:yy2+2,xx2-2:xx2+2)=1;
+##  endif
   ##Agregamos el frame al video
   addframe(vidRes, frm);
   
   clc;
-  printf("%f\n",(iCont*100)/info.NumFrames);
+  printf("%f,\t%d-%d\n",(iCont*100)/info.NumFrames, iCont,info.NumFrames);
 endfor
 
 clear(vidRes);
