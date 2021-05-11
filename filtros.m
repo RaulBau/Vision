@@ -73,6 +73,7 @@ for iCont=1:info.NumFrames-120
   
   clc;
   printf("%f,\t%d-%d\n",(iCont*100)/info.NumFrames, iCont,info.NumFrames);
+  clear frm;
 endfor
 
 close(vidRes);
