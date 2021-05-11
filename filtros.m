@@ -37,7 +37,7 @@ NImages=2;
 H_Filtro=filtroC_LK(LK,ruta,NImages);
 ##FinFiltros
 
-for iCont=1:info.NumFrames-1
+for iCont=1:info.NumFrames-120
   ##Obtenemos el frame
   frm=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),iCont));
   ##Recortamos la imagen
