@@ -70,6 +70,9 @@ for iCont=1:info.NumFrames-1
   endif
   ##Agregamos el frame al video
   addframe(vidRes, frm);
+  
+  clc;
+  printf("%f\n",(iCont*100)/info.NumFrames);
 endfor
 
 clear(vidRes);
