@@ -1,5 +1,5 @@
 ##
-# Nombre: Bautista Robles Raï¿½l
+# Nombre: Bautista Robles Raúl
 # Clave: 229563
 # Fecha: 23/03/2021
 ##
@@ -17,9 +17,9 @@ h=[-1 -1 -1;
 -1 -1 -1;];#Paso alto estricto laplaciano
 h2=fspecial("average");#laplacian
 
-##Seleccionamos el nï¿½mero de video
+##Seleccionamos el número de video
 numVideo="1";
-##Se obtiene la informaciï¿½n del video
+##Se obtiene la información del video
 info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
 ##Se genera el nombre del video resultado
 nombre = cstrcat ("res", numVideo, ".avi"); 
@@ -52,12 +52,26 @@ for iCont=1:info.NumFrames-120
   ##Aplicamos el filtro
   O_Filtro=kLawSpaceV(LK,frmRes);
   resp=O_Filtro.*(conj(H_Filtro)./abs(H_Filtro));
+  ##Creamos la correlación
   corl=real(ifftshift(ifft2(resp)));
+  ##Obtenemos el valor máximo de la correlación
   maximo1=max(corl(:));
   [yy1,xx1]=find(maximo1==corl);
   corl2=imfilter(corl,mascara);
   maximo2=max(corl2(:));
   [yy2,xx2]=find(maximo2==corl2);
+  ##Creamos un arreglo con los datos de la correlación
+  vmax=reshape(corl,[],1);
+  ##Ordenamos los datos
+  vmax10=sort(vmax,'descend');
+
+  ##  mesh(corl);
+##  media=mean(corl);
+##  media2=mean(corl2);
+  ##Obtenemos la media
+  media=mean(std(std(corl)));
+  media2=mean(std(std(corl2)));
+  printf("media: %f\n",media);
   
   ##Verificamos que el punto estï¿½ en el rango correcto
   if((yy1>=2&&yy1<=478)&&(xx1>=2&&xx1<=478))
@@ -70,8 +84,12 @@ for iCont=1:info.NumFrames-120
 ##  endif
   ##Agregamos el frame al video
   addframe(vidRes, frm);
-  
-  clc;
+##  if(mod(iCont,50)==0)
+##    imshow(frm);
+##    sleep(1);
+##  endif
+
+##  clc;
   printf("%f,\t%d-%d\n",(iCont*100)/info.NumFrames, iCont,info.NumFrames);
   clear frm;
 endfor
