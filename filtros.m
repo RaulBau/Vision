@@ -18,7 +18,7 @@ h=[-1 -1 -1;
 h2=fspecial("average");#laplacian
 
 ##Seleccionamos el número de video
-numVideo="1";
+numVideo="8";
 ##Se obtiene la información del video
 info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
 ##Se genera el nombre del video resultado
@@ -35,6 +35,10 @@ ruta="Filtros/lata";
 LK=0.4;
 NImages=2;
 H_Filtro=filtroC_LK(LK,ruta,NImages);
+##FinFiltros
+##Filtros
+rutaNesquik="Filtros/nesquik";
+H_Filtro_Nesquik=filtroC_LK(LK,rutaNesquik,NImages);
 ##FinFiltros
 
 for iCont=1:info.NumFrames-120
@@ -57,20 +61,9 @@ for iCont=1:info.NumFrames-120
   ##Obtenemos el valor máximo de la correlación
   maximo1=max(corl(:));
   [yy1,xx1]=find(maximo1==corl);
-  corl2=imfilter(corl,mascara);
-  maximo2=max(corl2(:));
-  [yy2,xx2]=find(maximo2==corl2);
-  ##Creamos un arreglo con los datos de la correlación
-  vmax=reshape(corl,[],1);
-  ##Ordenamos los datos
-  vmax10=sort(vmax,'descend');
 
-  ##  mesh(corl);
-##  media=mean(corl);
-##  media2=mean(corl2);
   ##Obtenemos la media
   media=mean(std(std(corl)));
-  media2=mean(std(std(corl2)));
   printf("media: %f\n",media);
   
   ##Verificamos que el punto estï¿½ en el rango correcto
@@ -78,10 +71,20 @@ for iCont=1:info.NumFrames-120
     ##Marcamos el punto en el frame
     frm(yy1-2:yy1+2,xx1-2:xx1+2)=1;
   endif
-##  if((yy2>=2&&yy2<=478)&&(xx2>=2&&xx2<=478))
-##    ##Marcamos el punto en el frame
-##    frm(yy2-2:yy2+2,xx2-2:xx2+2)=1;
-##  endif
+   ##Aplicamos el filtro
+  O_Filtro=kLawSpaceV(LK,frmRes);
+  resp=O_Filtro.*(conj(H_Filtro_Nesquik)./abs(H_Filtro_Nesquik));
+  ##Creamos la correlación
+  corl=real(ifftshift(ifft2(resp)));
+  ##Obtenemos el valor máximo de la correlación
+  maximo1=max(corl(:));
+  [yy1,xx1]=find(maximo1==corl);
+    ##Verificamos que el punto estï¿½ en el rango correcto
+  if((yy1>=2&&yy1<=478)&&(xx1>=2&&xx1<=478))
+    ##Marcamos el punto en el frame
+    frm(yy1-2:yy1+2,xx1-2:xx1+2)=1;
+  endif
+  
   ##Agregamos el frame al video
   addframe(vidRes, frm);
 ##  if(mod(iCont,50)==0)
