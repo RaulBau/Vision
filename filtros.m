@@ -1,7 +1,6 @@
 ##
-# Nombre: Bautista Robles Raúl
+# Nombre: Bautista Robles RaÃºl
 # Clave: 229563
-# Fecha: 23/03/2021
 ##
 
 ##Se limpia la consola
@@ -12,14 +11,16 @@ clear;
 pkg load image;
 pkg load video;
 
+#Paso alto estricto laplaciano
 h=[-1 -1 -1;
 -1 8 -1;
--1 -1 -1;];#Paso alto estricto laplaciano
-h2=fspecial("average");#laplacian
+-1 -1 -1;];
+#Average
+h2=fspecial("average";
 
-##Seleccionamos el número de video
-numVideo="8";
-##Se obtiene la información del video
+##Seleccionamos el nÃºmero de video
+numVideo="2";
+##Se obtiene la informaciÃ³n del video
 info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
 ##Se genera el nombre del video resultado
 nombre = cstrcat ("res", numVideo, ".avi"); 
@@ -56,9 +57,9 @@ for iCont=1:info.NumFrames-120
   ##Aplicamos el filtro
   O_Filtro=kLawSpaceV(LK,frmRes);
   resp=O_Filtro.*(conj(H_Filtro)./abs(H_Filtro));
-  ##Creamos la correlación
+  ##Creamos la correlaciÃ³n
   corl=real(ifftshift(ifft2(resp)));
-  ##Obtenemos el valor máximo de la correlación
+  ##Obtenemos el valor mÃ¡ximo de la correlaciÃ³n
   maximo1=max(corl(:));
   [yy1,xx1]=find(maximo1==corl);
 
@@ -74,11 +75,11 @@ for iCont=1:info.NumFrames-120
    ##Aplicamos el filtro
   O_Filtro=kLawSpaceV(LK,frmRes);
   resp=O_Filtro.*(conj(H_Filtro_Nesquik)./abs(H_Filtro_Nesquik));
-  ##Creamos la correlación
-  corl=real(ifftshift(ifft2(resp)));
-  ##Obtenemos el valor máximo de la correlación
-  maximo1=max(corl(:));
-  [yy1,xx1]=find(maximo1==corl);
+  ##Creamos la correlaciÃ³n
+  corl2=real(ifftshift(ifft2(resp)));
+  ##Obtenemos el valor mÃ¡ximo de la correlaciÃ³n
+  maximo1=max(corl2(:));
+  [yy1,xx1]=find(maximo1==corl2);
     ##Verificamos que el punto estï¿½ en el rango correcto
   if((yy1>=2&&yy1<=478)&&(xx1>=2&&xx1<=478))
     ##Marcamos el punto en el frame

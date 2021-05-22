@@ -1,10 +1,12 @@
 ##
-# Nombre: Bautista Robles Raúl
+# Nombre: Bautista Robles RaÃºl
 # Clave: 229563
-# Fecha: 23/03/2021
 #
-# numVideo: Número de video
-# numFrame: Número de frame
+# Nombre: Alejo Pizano Braulio
+# Clave: 267036
+#
+# numVideo: NÃºmero de video
+# numFrame: NÃºmero de frame
 ##
 
 #Cargamos los paquetes

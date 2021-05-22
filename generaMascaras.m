@@ -1,7 +1,10 @@
 ##
-# Nombre: Bautista Robles Raúl
+# Nombre: Bautista Robles RaÃºl
 # Clave: 229563
-# Fecha: 23/03/2021
+#
+# Nombre: Alejo Pizano Braulio
+# Clave: 267036
+#
 #
 # Se generan las mascaras
 ##

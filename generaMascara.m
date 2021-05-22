@@ -1,16 +1,18 @@
 ##
-# Nombre: Bautista Robles Raúl
+# Nombre: Bautista Robles RaÃºl
 # Clave: 229563
-# Fecha: 23/03/2021
+#
+# Nombre: Alejo Pizano Braulio
+# Clave: 267036
 #
 # x: Coordenada X
 # y: Coordenada Y
-# xTam: Tamaño en X
-# yTam: Tamaño en Y
-# numVideo: Número de video
-# numFrame: Número de frame
+# xTam: TamaÃ±o en X
+# yTam: TamaÃ±o en Y
+# numVideo: NÃºmero de video
+# numFrame: NÃºmero de frame
 # nombre: Nombre del video
-# numFiltro: Número de filtro
+# numFiltro: NÃºmero de filtro
 ##
 
 #Cargamos los paquetes
@@ -24,7 +26,7 @@ function generaMascara(x, y, xTam, yTam, numVideo, numFrame, nombre, numFiltro)
   -1 -1 -1;];
   #laplacian
   h2=fspecial("average");
-  ##Se obtiene la información del video
+  ##Se obtiene la informaciÃ³n del video
   info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
   ##Obtenemos el frame
   frm=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),numFrame));

@@ -1,3 +1,12 @@
+##
+# Nombre: Bautista Robles Raúl
+# Clave: 229563
+#
+# Nombre: Alejo Pizano Braulio
+# Clave: 267036
+#
+##
+
 function [h] = makeSDFX(X,vectoru)
   d = sqrt(size(X,1));
   hx = X; %% Matriz con imagenes en las columnas

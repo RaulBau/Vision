@@ -1,6 +1,15 @@
+##
+# Nombre: Bautista Robles RaÃºl
+# Clave: 229563
+#
+# Nombre: Alejo Pizano Braulio
+# Clave: 267036
+#
+##
+
 function [H1]=filtroC_LK(L_K, ruta, Nim)
   X = [];
-  ##Se itera desde 1 hasta el número de imagenes
+  ##Se itera desde 1 hasta el nï¿½mero de imagenes
   for i=1:Nim
     B=kLawSpace(L_K, [ruta,num2str(i),'.PNG'],0);
     ##Forma Vectorial de la imagen

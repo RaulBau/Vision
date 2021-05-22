@@ -1,10 +1,19 @@
+##
+# Nombre: Bautista Robles RaÃºl
+# Clave: 229563
+#
+# Nombre: Alejo Pizano Braulio
+# Clave: 267036
+#
+##
+
 function [imOr] = kLawSpace(L_K, nombreA, recorta)
   printf("%s\n", nombreA);
   ##Se lee la imagen
   img=imread(nombreA);
   ##Obtenemos el valor de un pixel 
   pixel=impixel(img, 10,10);
-  ##Obtenemos el tamaño del pixel
+  ##Obtenemos el tamaï¿½o del pixel
   sPixel=size(pixel);
   ##Se revisa si el pixel es de 3x3
   if(sPixel(1)==3)
