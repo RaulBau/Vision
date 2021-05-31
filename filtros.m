@@ -171,16 +171,6 @@ for iCont=1:totalFrames
   arr_P(iCont, 14)=filtros_arr(5).x;
   arr_P(iCont, 15)=filtros_arr(5).y;
   arr_P(iCont, 16)=filtros_arr(5).maximo;
-
-##  ##Obtenemos la media
-##  media=mean(std(std(corl)));
-##  printf("media: %f\n",media);
-  
-  ##Verificamos que el punto est� en el rango correcto
-##  if((yy1>=2&&yy1<=478)&&(xx1>=2&&xx1<=478))
-##    ##Marcamos el punto en el frame
-##    frm(yy1-2:yy1+2,xx1-2:xx1+2)=1;
-##  endif
   
   ##Agregamos el frame al video
 ##  addframe(vidRes, frm);
@@ -189,7 +179,7 @@ for iCont=1:totalFrames
 ##    sleep(1);
 ##  endif
 
-  clc;
+##  clc;
   printf("%f,\t%d-%d\n",(iCont*100)/totalFrames, iCont,totalFrames);
 ##  clear frm;
 endfor
