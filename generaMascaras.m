@@ -40,3 +40,10 @@ generaMascara(680, 245, 141, 195,"9", 6150, "herdez", "1");
 generaMascara(250, 35, 41, 71, "9", 2400, "herdez", "2");
 ##Filtro herdez 3
 generaMascara(1, 225, 135, 205, "9", 900, "herdez", "3");
+
+##Filtro costena 1
+generaMascara(46, 280, 115, 141, "7", 1700, "costena", "1");
+##Filtro costena 2
+generaMascara(670, 286, 115, 145, "7", 4950, "costena", "2");
+##Filtro costena 3
+generaMascara(365, 185, 65, 107, "7", 3300, "costena", "3");

@@ -19,7 +19,7 @@ h=[-1 -1 -1;
 h2=fspecial("average");
 
 ##Seleccionamos el número de video
-numVideo="4";
+numVideo="2";
 ##Se obtiene la información del videos
 info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
 ##Se genera el nombre del video resultado
@@ -33,7 +33,7 @@ mascara(2,2)=10;
 
 ##Filtros
 ##Se guarda el total de filtros
-totalFiltros=4;
+totalFiltros=5;
 ##Se crea un arreglo con los filtros
 filtros_arr(1:10) = struct();
 ruta="Filtros/lata";
@@ -82,6 +82,15 @@ filtros_arr(4).y=0;
 filtros_arr(4).maximo=0;
 
 
+filtros_arr(5).ruta="Filtros/costena";
+filtros_arr(5).nombre="costena";
+filtros_arr(5).h_filtro=filtroC_LK(LK,filtros_arr(5).ruta,NImages);
+filtros_arr(5).detectado=false;
+filtros_arr(5).cambio=false;
+filtros_arr(5).x=0;
+filtros_arr(5).y=0;
+filtros_arr(5).max=0;
+
 ##filtros_arr(5).ruta="Filtros/";
 ##filtros_arr(5).h_filtro=filtroC_LK(LK,filtros_arr(5).ruta,NImages);
 ##filtros_arr(5).detectado=false;
@@ -95,7 +104,7 @@ filtros_arr(4).maximo=0;
 totalFrames=info.NumFrames-120;
 
 ##Creamos el arreglo de resultados del filtro P
-arr_P=zeros(totalFrames,4);
+arr_P=zeros(totalFrames, 16);
 printf("Inicia procesamiento.\n");
 for iCont=1:totalFrames
   ##Obtenemos el frame
@@ -108,7 +117,7 @@ for iCont=1:totalFrames
   frmRes=imfilter(frm, h);
 ##  ##Aplicamos el segundo filtro
 ##  frmRes=imfilter(frmRes, h2);
-  
+
   ##Aplicamos el filtro
   O_Filtro=kLawSpaceV(LK,frmRes);
   for iFiltro=1:totalFiltros
@@ -146,6 +155,22 @@ for iCont=1:totalFrames
 ##  arr_P(iCont,2)=xx1;
 ##  arr_P(iCont,3)=yy1;
 ##  arr_P(iCont,4)=maximo1;
+  arr_P(iCont,  1)=iCont;
+  arr_P(iCont,  2)=filtros_arr(1).x;
+  arr_P(iCont,  3)=filtros_arr(1).y;
+  arr_P(iCont,  4)=filtros_arr(1).maximo;
+  arr_P(iCont,  5)=filtros_arr(2).x;
+  arr_P(iCont,  6)=filtros_arr(2).y;
+  arr_P(iCont,  7)=filtros_arr(2).maximo;
+  arr_P(iCont,  8)=filtros_arr(3).x;
+  arr_P(iCont,  9)=filtros_arr(3).y;
+  arr_P(iCont, 10)=filtros_arr(3).maximo;
+  arr_P(iCont, 11)=filtros_arr(4).x;
+  arr_P(iCont, 12)=filtros_arr(4).y;
+  arr_P(iCont, 13)=filtros_arr(4).maximo;
+  arr_P(iCont, 14)=filtros_arr(5).x;
+  arr_P(iCont, 15)=filtros_arr(5).y;
+  arr_P(iCont, 16)=filtros_arr(5).maximo;
 
 ##  ##Obtenemos la media
 ##  media=mean(std(std(corl)));
@@ -158,14 +183,14 @@ for iCont=1:totalFrames
 ##  endif
   
   ##Agregamos el frame al video
-  addframe(vidRes, frm);
+##  addframe(vidRes, frm);
 ##  if(mod(iCont,50)==0)
 ##    imshow(frm);
 ##    sleep(1);
 ##  endif
 
-##  clc;
-##  printf("%f,\t%d-%d\n",(iCont*100)/totalFrames, iCont,totalFrames);
+  clc;
+  printf("%f,\t%d-%d\n",(iCont*100)/totalFrames, iCont,totalFrames);
 ##  clear frm;
 endfor
 
