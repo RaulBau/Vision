@@ -32,3 +32,11 @@ generaMascara(420, 200, 65, 91,"2", 450, "lata", "1");
 ##Filtro lata 2
 generaMascara(305, 75, 41, 61,"6", 450, "lata", "2");
 ##Filtro lata 3
+generaMascara(145, 240, 95, 125,"6", 8100, "lata", "3");
+
+##Filtro herdez 1
+generaMascara(680, 245, 141, 195,"9", 6150, "herdez", "1");
+##Filtro herdez 2
+generaMascara(250, 35, 40, 70, "9", 2400, "herdez", "2");
+##Filtro herdez 3
+generaMascara(1, 225, 135, 205, "9", 900, "herdez", "3");
