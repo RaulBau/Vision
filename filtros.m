@@ -11,6 +11,8 @@ clear;
 pkg load image;
 pkg load video;
 
+generaMascaras();
+
 #Paso alto estricto laplaciano
 h=[-1 -1 -1;
 -1 8 -1;
@@ -132,7 +134,7 @@ for iCont=1:totalFrames
     if(filtros_arr(iFiltro).maximo >= 0.09 && filtros_arr(iFiltro).detectado== false)
       filtros_arr(iFiltro).detectado = true;
 ##      if(filtros_arr(iFiltro).detectado != filtros_arr(iFiltro).cambio)
-        printf(cstrcat (filtros_arr(iFiltro).nombre, " detectado.", "\n"));
+        printf(cstrcat (filtros_arr(iFiltro).nombre, " detectado. Frame: %d", "\n"), iCont);
         filtros_arr(iFiltro).cambio = filtros_arr(iFiltro).detectado;
 ##      endif
     else
@@ -180,7 +182,7 @@ for iCont=1:totalFrames
 ##  endif
 
 ##  clc;
-  printf("%f,\t%d-%d\n",(iCont*100)/totalFrames, iCont,totalFrames);
+##  printf("%f,\t%d-%d\n",(iCont*100)/totalFrames, iCont,totalFrames);
 ##  clear frm;
 endfor
 
