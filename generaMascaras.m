@@ -54,8 +54,8 @@ generaMascara (365, 185, 65, 107, "7", 3300, "costena", "3");
 
 ##Atun
 generaMascara(395,243,17,15,"/V2/1",300,"FiltroAtun","1");
-generaMascara(154,302,23,17,"/V2/1",4500,"FiltroAtun","2");
-generaMascara(326,171,13,11,"/V2/1",7000,"FiltroAtun","3");
+generaMascara(455,306,19,17,"/V2/1",4500,"FiltroAtun","2");
+generaMascara(366,133,9,9,"/V2/1",7000,"FiltroAtun","3");
 
 ##Tenedor
 generaMascara(320,144,15,15,"/V2/2",2000,"FiltroTenedor","1");
