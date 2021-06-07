@@ -49,4 +49,24 @@ generaMascara (46, 280, 115, 141, "7", 1700, "costena", "1");
 generaMascara (670, 286, 115, 145, "7", 4950, "costena", "2");
 ##Filtro costena 3
 generaMascara (365, 185, 65, 107, "7", 3300, "costena", "3");
+
+##Nuevos Filtros
+
+##Atun
+generaMascara(395,243,17,15,"/V2/1",300,"FiltroAtun","1");
+generaMascara(154,302,22,16,"/V2/1",4500,"FiltroAtun","2");
+generaMascara(326,171,12,11,"/V2/1",7000,"FiltroAtun","3");
+
+##Tenedor
+generaMascara(320,144,14,14,"/V2/2",2000,"FiltroTenedor","1");
+generaMascara(287,280,21,24,"/V2/2",7000,"FiltroTenedor","2");
+generaMascara(336,244,20,20,"/V2/2",8500,"FiltroTenedor","3");
+
+##Chiles
+generaMascara(328,137,14,13,"/V2/3",500,"FiltroChile","1");
+generaMascara(156,266,24,20,"/V2/3",2500,"FiltroChile","2");
+generaMascara(349,132,15,14,"/V2/3",3000,"FiltroChile","3");
+
+
+
 endfunction

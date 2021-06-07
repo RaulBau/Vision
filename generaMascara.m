@@ -31,9 +31,9 @@ function generaMascara(x, y, xTam, yTam, numVideo, numFrame, nombre, numFiltro)
   ##Obtenemos el frame
   frm=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),numFrame));
   ##Aplicamos el primer filtro
-  frm=imfilter(frm, h);
+  ##frm=imfilter(frm, h);
   ##Aplicamos el segundo filtro
-  frm=imfilter(frm, h2);
+  ##frm=imfilter(frm, h2);
   ##Recortamos la imagen
   printf("%d,%d,%d,%d,\n",x,y,xTam,yTam);
   imFiltro=imcrop(frm,[x,y,xTam,yTam]);
