@@ -30,6 +30,9 @@ function generaMascara(x, y, xTam, yTam, numVideo, numFrame, nombre, numFiltro)
   info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
   ##Obtenemos el frame
   frm=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),numFrame));
+    
+  frm .*= -2.0;
+  frm .+= 1.2;
   ##Aplicamos el primer filtro
 ##  frm=imfilter(frm, h);
   ##Aplicamos el segundo filtro

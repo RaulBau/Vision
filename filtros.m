@@ -21,7 +21,7 @@ h=[-1 -1 -1;
 h2=fspecial("average");
 
 ##Seleccionamos el número de video
-numVideo="V2/2";
+numVideo="V2/6";
 ##Se obtiene la información del videos
 info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
 ##Se genera el nombre del video resultado
@@ -146,14 +146,18 @@ if(procesaVideo==true)
   csvwrite("res_P.csv",arr_P);
 else
   #Creamos una variable para obtener el frame
-  numFrame=7200;
+  numFrame=1350;
   #Leemos el frame
   frm=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),numFrame));
   ##Recortamos la imagen
   frm=imcrop(frm,[155,1, 359, 359]);
   ##Creamos un respaldo del frame
   frmRes=frm;
-
+  
+frm .*= -2.0;
+frm .+= 1.2;
+  
+##  frm = 255 - frm;
   ##Aplicamos el filtro
   O_Filtro=kLawSpaceV(LK,frmRes);
   for iFiltro=1:totalFiltros
@@ -179,6 +183,7 @@ else
 ##      endif
     endif
   endfor
+  imshow(frm);
 endif
 
 printf("Fin\n");
