@@ -5,8 +5,10 @@
 # Nombre: Alejo Pizano Braulio
 # Clave: 267036
 #
-# numVideo: Número de video
-# numFrame: Número de frame
+# numVideo: Numero de video
+# numFrame: Numero de frame
+#
+# Se muestra un frame de un video seleccionado
 ##
 
 #Cargamos los paquetes

@@ -4,15 +4,18 @@
 #
 # Nombre: Alejo Pizano Braulio
 # Clave: 267036
-#
+# Entradas:
 # x: Coordenada X
 # y: Coordenada Y
-# xTam: Tamaño en X
-# yTam: Tamaño en Y
-# numVideo: Número de video
-# numFrame: Número de frame
-# nombre: Nombre del video
-# numFiltro: Número de filtro
+# xTam: Tamano en X
+# yTam: Tamano en Y
+# numVideo: Numero de video
+# numFrame: Numero de frame
+# nombre: Nombre del frame
+# numFiltro: Numero de filtro
+#
+# Salidas: Ninguna
+# Genera y guarda una mascara segun las corrdenadas que le llegan por parametro
 ##
 
 #Cargamos los paquetes
@@ -30,13 +33,10 @@ function generaMascara(x, y, xTam, yTam, numVideo, numFrame, nombre, numFiltro)
   info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
   ##Obtenemos el frame
   frm=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),numFrame));
-    
-  frm .*= -2.0;
+  ##Modificamos el contraste
+  frm .*= -1.6;
+  ##Modificamos el brillo
   frm .+= 1.2;
-  ##Aplicamos el primer filtro
-##  frm=imfilter(frm, h);
-  ##Aplicamos el segundo filtro
-##  frm=imfilter(frm, h2);
   ##Recortamos la imagen
   printf("%d,%d,%d,%d,\n",x,y,xTam,yTam);
   imFiltro=imcrop(frm,[x,y,xTam,yTam]);

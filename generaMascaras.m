@@ -5,8 +5,9 @@
 # Nombre: Alejo Pizano Braulio
 # Clave: 267036
 #
-#
-# Se generan las mascaras
+# Se generan las mascaras llamando a generaMascara(...)
+# Entradas: Ninguna
+# Salidas: Ninguna
 ##
 
 #Cargamos los paquetes
@@ -52,21 +53,25 @@ generaMascara (365, 185, 65, 107, "7", 3300, "costena", "3");
 
 ##Nuevos Filtros
 
-##Atun
+##Filtro Atun 1
 generaMascara(395,243,17,15,"/V2/1",300,"FiltroAtun","1");
-generaMascara(455,306,19,17,"/V2/1",4500,"FiltroAtun","2");
-generaMascara(366,133,9,9,"/V2/1",7000,"FiltroAtun","3");
+##Filtro Atun 2
+generaMascara(154,302,23,17,"/V2/1",4500,"FiltroAtun","2");
+##Filtro Atun 3
+generaMascara(326,171,13,11,"/V2/1",7000,"FiltroAtun","3");
 
-##Tenedor
+##Filtro Tenedor 1
 generaMascara(320,144,15,15,"/V2/2",2000,"FiltroTenedor","1");
+##Filtro Tenedor 2
 generaMascara(287,280,21,25,"/V2/2",7000,"FiltroTenedor","2");
+##Filtro Tenedor 3
 generaMascara(336,244,19,19,"/V2/2",8500,"FiltroTenedor","3");
 
-##Chiles
+##Filtro Chiles 1
 generaMascara(328,137,13,13,"/V2/3",500,"FiltroChile","1");
+##Filtro Chiles 2
 generaMascara(156,266,25,21,"/V2/3",2500,"FiltroChile","2");
+##Filtro Chiles 3
 generaMascara(349,132,15,13,"/V2/3",3000,"FiltroChile","3");
-
-
 
 endfunction
