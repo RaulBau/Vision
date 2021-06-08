@@ -30,7 +30,7 @@ h=[-1 -1 -1;
 h2=fspecial("average");
 
 ##Seleccionamos el número de video
-numVideo="V2/6";
+numVideo="V2/4";
 ##Se obtiene la información del videos
 info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
 ##Se genera el nombre del video resultado
@@ -40,7 +40,7 @@ vidRes = avifile(nombre, "codec", "msmpeg4v2");
 
 ##Filtros
 ##Se guarda el total de filtros
-totalFiltros=3;
+totalFiltros=1;
 ##Se crea un arreglo con los filtros
 filtros_arr(1:10) = struct();
 ruta="Filtros/lata";
@@ -86,7 +86,7 @@ filtros_arr(3).maximo=0;
 ##FinFiltros
 
 #Variable para procesar todo el video o un frame en especifico
-procesaVideo=true;
+procesaVideo=false;
 
 
 if(procesaVideo==true)
@@ -96,14 +96,13 @@ if(procesaVideo==true)
   ##Creamos el arreglo de resultados del filtro P
   arr_P=zeros(totalFrames/3, 10);
   #Creamos un contador para manejar el arreglo de resultados
-  arrCont=1;
+  arrCont=3;
   printf("Inicia procesamiento.\n");
   printf("Total frames:\n", info.NumFrames);
   for iCont=1:3:totalFrames
-##    printf("%d\n",iCont);
-  ##  printf("Frame: %d\n", iCont);
     ##Obtenemos el frame
     frm=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),iCont));
+    ##Dependiendo del video se elige el fondo
     switch(numVideo)
       case "V2/1"
         fondo=rgb2gray(aviread("Videos/V2/1.avi",1));
@@ -116,6 +115,7 @@ if(procesaVideo==true)
       otherwise
         fondo=rgb2gray(aviread("Videos/V2/4.avi",1));
     endswitch
+    ##Se elimina el fondo
     frm=fondo-frm;
     ##Recortamos la imagen
     frm=imcrop(frm,[155,1, 359, 359]);
@@ -128,6 +128,7 @@ if(procesaVideo==true)
     if(suma>5)
     ##Aplicamos el filtro
       O_Filtro=kLawSpaceV(LK,frm);
+      ##Se inicializa la bandera para imprimir
       imprimirDetectados=0;
       for iFiltro=1:totalFiltros
         ##filtros_arr(iFiltro).
@@ -136,6 +137,7 @@ if(procesaVideo==true)
         filtros_arr(iFiltro).corl=real(ifftshift(ifft2(filtros_arr(iFiltro).resp)));
         ##Obtenemos el valor máximo de la correlación
         filtros_arr(iFiltro).maximo=max(filtros_arr(iFiltro).corl(:));
+        ##Se obtienen las coordenadas del maximo
         [filtros_arr(iFiltro).y,filtros_arr(iFiltro).x]=find(filtros_arr(iFiltro).maximo==filtros_arr(iFiltro).corl);
         ##Creamos un arreglo con los datos de la correlaci�n
         vmax=reshape(filtros_arr(iFiltro).corl,[],1);        
@@ -143,7 +145,7 @@ if(procesaVideo==true)
           ##Ordenamos los datos y obtenemos los 10 primeros
           vmax10=sort(vmax,'descend')(1:10);
           ##Se comparan los resultados para saber si son validos
-          detectados=sum(vmax10(1:3)>=0.08);
+          detectados=sum(vmax10(1:10)>=0.08);
           ##Los datos se guardan en la estructura
           filtros_arr(iFiltro).detectado = detectados;
           ##Revisamos si se encontraron objetos
@@ -191,7 +193,7 @@ if(procesaVideo==true)
   clear vidRes;
 else
   #Creamos una variable para obtener el frame
-  numFrame=1300;
+  numFrame=3500;
   #Leemos el frame
   frm=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),numFrame));
   ##Eliminamos el fondo segun el video
@@ -215,6 +217,8 @@ else
   
   ##Aplicamos el filtro
   O_Filtro=kLawSpaceV(LK,frm);
+  ##Se inicializa la bandera para imprimir
+  imprimirDetectados=0;
   for iFiltro=1:totalFiltros
     ##filtros_arr(iFiltro).
     filtros_arr(iFiltro).resp=O_Filtro.*(conj(filtros_arr(iFiltro).h_filtro)./abs(filtros_arr(iFiltro).h_filtro));
@@ -224,15 +228,34 @@ else
     filtros_arr(iFiltro).maximo=max(filtros_arr(iFiltro).corl(:));
     ##Se obtienen la scoorenadas del maximo
     [filtros_arr(iFiltro).y,filtros_arr(iFiltro).x]=find(filtros_arr(iFiltro).maximo==filtros_arr(iFiltro).corl);
-    
-    if(filtros_arr(iFiltro).maximo >= 0.08)
-      filtros_arr(iFiltro).detectado = true;
-        printf(cstrcat (filtros_arr(iFiltro).nombre, " detectado. Frame: %d", "\n"), numFrame);
-        filtros_arr(iFiltro).cambio = filtros_arr(iFiltro).detectado;
+    ##Creamos un arreglo con los datos de la correlaci�n
+    vmax=reshape(filtros_arr(iFiltro).corl,[],1);        
+    if(filtros_arr(iFiltro).maximo >= 0.08 && filtros_arr(iFiltro).detectado== false)
+      ##Ordenamos los datos y obtenemos los 10 primeros
+      vmax10=sort(vmax,'descend')(1:10);
+      ##Se comparan los resultados para saber si son validos
+      detectados=sum(vmax10(1:3)>=0.08);
+      ##Los datos se guardan en la estructura
+      filtros_arr(iFiltro).detectado = detectados;
+      ##Revisamos si se encontraron objetos
+      if(detectados>0)
+        imprimirDetectados=detectados;
+      endif
     else
-      filtros_arr(iFiltro).detectado=false;
-  endif
+      filtros_arr(iFiltro).detectado=0;
+    endif
   endfor
+  
+  if(imprimirDetectados!=0)
+    mensaje="Se encontraron: ";
+    for iFiltro=1:totalFiltros
+      if(filtros_arr(iFiltro).detectado!=0)
+        mensaje=cstrcat (mensaje,mat2str (filtros_arr(iFiltro).detectado)," ", filtros_arr(iFiltro).nombre,", ");
+      endif
+    endfor
+    mensaje=cstrcat (mensaje,"\n");
+    printf(mensaje);
+  endif
   
   imshow(frm);
 endif
