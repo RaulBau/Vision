@@ -33,10 +33,11 @@ function generaMascara(x, y, xTam, yTam, numVideo, numFrame, nombre, numFiltro)
   info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
   ##Obtenemos el frame
   frm=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),numFrame));
-  ##Modificamos el contraste
-  frm .*= -1.6;
-  ##Modificamos el brillo
-  frm .+= 1.2;
+  ##Obtenemos el primer frame para el fondo
+  fondo=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),1));
+##  imshow(fondo-frm);
+  ##Eliminamos el fondo
+##  frm=fondo-frm;
   ##Recortamos la imagen
   printf("%d,%d,%d,%d,\n",x,y,xTam,yTam);
   imFiltro=imcrop(frm,[x,y,xTam,yTam]);
