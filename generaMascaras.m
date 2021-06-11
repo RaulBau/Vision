@@ -54,24 +54,24 @@ generaMascara (365, 185, 65, 107, "7", 3300, "costena", "3");
 ##Nuevos Filtros
 
 ##Filtro Atun 1
-generaMascara(395,243,17,15,"/V2/1",300,"FiltroAtun","1");
+generaMascara(492,290,23,21,"filtros",600,"FiltroAtun","1");
 ##Filtro Atun 2
-generaMascara(154,302,23,17,"/V2/1",4500,"FiltroAtun","2");
+generaMascara(182,169,15,15,"filtros",1800,"FiltroAtun","2");
 ##Filtro Atun 3
-generaMascara(326,171,13,11,"/V2/1",7000,"FiltroAtun","3");
+generaMascara(298,122,11,11,"filtros",3000,"FiltroAtun","3");
 
 ##Filtro Tenedor 1
-generaMascara(320,144,15,15,"/V2/2",2000,"FiltroTenedor","1");
+generaMascara(309,288,23,21,"filtros",600,"FiltroTenedor","1");
 ##Filtro Tenedor 2
-generaMascara(287,280,21,25,"/V2/2",7000,"FiltroTenedor","2");
+generaMascara(424,172,15,15,"filtros",1800,"FiltroTenedor","2");
 ##Filtro Tenedor 3
-generaMascara(336,244,19,19,"/V2/2",8500,"FiltroTenedor","3");
+generaMascara(219,116,11,11,"filtros",3000,"FiltroTenedor","3");
 
 ##Filtro Chiles 1
-generaMascara(328,137,13,13,"/V2/3",500,"FiltroChile","1");
+generaMascara(119,270,23,21,"filtros",600,"FiltroChile","1");
 ##Filtro Chiles 2
-generaMascara(156,266,25,21,"/V2/3",2500,"FiltroChile","2");
+generaMascara(284,155,15,15,"filtros",1800,"FiltroChile","2");
 ##Filtro Chiles 3
-generaMascara(349,132,15,13,"/V2/3",3000,"FiltroChile","3");
+generaMascara(388,114,11,11,"filtros",3000,"FiltroChile","3");
 
 endfunction

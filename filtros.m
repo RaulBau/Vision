@@ -30,7 +30,7 @@ h=[-1 -1 -1;
 h2=fspecial("average");
 
 ##Seleccionamos el número de video
-numVideo="V2/4";
+numVideo="V3/4";
 ##Se obtiene la información del videos
 info=aviinfo(cstrcat ("Videos/", numVideo, ".avi"));
 ##Se genera el nombre del video resultado
@@ -40,7 +40,7 @@ vidRes = avifile(nombre, "codec", "msmpeg4v2");
 
 ##Filtros
 ##Se guarda el total de filtros
-totalFiltros=1;
+totalFiltros=3;
 ##Se crea un arreglo con los filtros
 filtros_arr(1:10) = struct();
 ruta="Filtros/lata";
@@ -86,7 +86,7 @@ filtros_arr(3).maximo=0;
 ##FinFiltros
 
 #Variable para procesar todo el video o un frame en especifico
-procesaVideo=false;
+procesaVideo=true;
 
 
 if(procesaVideo==true)
@@ -113,7 +113,7 @@ if(procesaVideo==true)
       case "V2/6"
         fondo=rgb2gray(aviread("Videos/V2/6.avi",1));
       otherwise
-        fondo=rgb2gray(aviread("Videos/V2/4.avi",1));
+        fondo=rgb2gray(aviread(cstrcat ("Videos/", numVideo, ".avi"),1));
     endswitch
     ##Se elimina el fondo
     frm=fondo-frm;
